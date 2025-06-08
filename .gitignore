@@ -1,0 +1,12 @@
+# Empêche de versionner le fichier contenant la clé API
+.env
+
+# Exclut le dossier des dépendances Node.js
+node_modules/
+
+# Cache les fichiers de build si tu en génères (facultatif)
+dist/
+
+# Empêche les fichiers de logs temporaires
+*.log
+
