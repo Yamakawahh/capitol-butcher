@@ -3,8 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- Politique de sécurité stricte -->
+  <!-- CSP stricte incluant unsafe-inline pour l'<style> inline -->
   <meta http-equiv="Content-Security-Policy"
         content="default-src 'self'; font-src 'self' https://fonts.gstatic.com;
                  style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; img-src 'self';
@@ -20,7 +19,7 @@
   <style>
     :root{--sky:#87ceeb;--white:#ffffff;--dark:#1e1e1e;--overlay:rgba(0,0,0,.15);--gold:#ffd54f}
     *{box-sizing:border-box;margin:0;padding:0;font-family:"Poppins",sans-serif}
-    /* ▼ flex‑column pour empiler carte + footer ▼ */
+    /* ▼ flex-column pour empiler carte + footer ▼ */
     body{
       background:var(--sky);
       display:flex;
@@ -67,12 +66,12 @@
     <div id="status" aria-live="polite"></div>
     <pre id="poemOutput"></pre>
 
-    <a id="reviewBtn" href="https://g.page/r/CAPITOL-BUTCHER/review" rel="noopener noreferrer" target="_blank">
+    <a id="reviewBtn" href="https://g.page/r/CAPITOL-BUTCHER/review"
+       rel="noopener noreferrer" target="_blank">
       Laisser un avis ⭐
     </a>
   </div>
 
-  <!-- Footer désormais centré en dessous de la carte -->
   <footer>
     <a href="/mentions-legales.html">Mentions légales</a> ·
     <a href="/politique-confidentialite.html">Politique de confidentialité</a>
