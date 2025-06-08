@@ -14,14 +14,11 @@ const { escape } = validator;
 const app = express();
 
 app.use(cors());                      // CORS simple
-app.use(express.json());              // body‑parser
-app.use(morgan('combined'));          // logs Apache‑like
+app.use(express.json());              // body-parser
+app.use(morgan('combined'));          // logs Apache-like
+app.use(helmet({ contentSecurityPolicy: false })); // sécurité HTTP
 
-// En‑têtes sécurité (X-Frame‑Options, HSTS, etc.)
-// On désactive la CSP d’Helmet car on la gère via la <meta> dans index.html.
-app.use(helmet({ contentSecurityPolicy: false }));
-
-// 5 req/min/IP sur l’endpoint Generate
+// Rate limit: 5 req/min/IP
 app.use('/api/generate-poem', rateLimit({
   windowMs: 60_000,
   max: 5,
@@ -43,10 +40,10 @@ app.post('/api/generate-poem', async (req, res) => {
     }
 
     const prompt = `Compose un poème français doux et chaleureux qui s'adresse directement à \
-${safeName} (« vous ») et fait l'éloge de sa ${safeQuality}. Sa qualité est soit un nom soit un adjectif. Adapte le poème en fonction \
-Fais un clin d'œil à la qualité de La Boucherie Capitol. \ Fait un clin d'oeil à la cuisine du client. Le poème est pour le client.
+${safeName} (« vous ») et fait l'éloge de sa ${safeQuality}. Adapte le poème en fonction \
+Fais un clin d'œil à la qualité de La Boucherie Capitol et à la cuisine du client. \
 Invite poliment à laisser un avis Google pour la boucherie (sans URL). \
-Trois strophes, quatre vers chacune, rimes plates ou riches, vocabulaire simple mais non familier. Les vers sont courts`;
+Trois strophes, quatre vers chacune, rimes plates ou riches, vocabulaire simple mais non familier.`;
 
     const completion = await openai.chat.completions.create({
       model: 'gpt-3.5-turbo',
@@ -69,11 +66,16 @@ Trois strophes, quatre vers chacune, rimes plates ou riches, vocabulaire simple 
 app.use(express.static('public'));    // sert index.html, app.js, etc.
 
 app.get('/', (req, res) => {
-  res.sendFile('index.html', { root: 'Public' }); // ← AJOUT ICI
+  res.sendFile('index.html', { root: 'public' });
+});
+app.get('/mentions-legales.html', (req, res) => {
+  res.sendFile('mentions-legales.html', { root: 'public' });
+});
+app.get('/politique-confidentialite.html', (req, res) => {
+  res.sendFile('politique-confidentialite.html', { root: 'public' });
 });
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`🚀  Serveur prêt sur http://localhost:${PORT}`);
+  console.log(`🚀 Serveur prêt sur http://localhost:${PORT}`);
 });
-
