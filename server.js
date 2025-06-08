@@ -68,6 +68,10 @@ Trois strophes, quatre vers chacune, rimes plates ou riches, vocabulaire simple 
 // -------------------- STATIC & SERVEUR ---------------
 app.use(express.static('public'));    // sert index.html, app.js, etc.
 
+app.get('/', (req, res) => {
+  res.sendFile('index.html', { root: 'Public' }); // ← AJOUT ICI
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`🚀  Serveur prêt sur http://localhost:${PORT}`);
