@@ -1,4 +1,3 @@
-# Empêche de versionner le fichier contenant la clé API
 .env
 
 # Exclut le dossier des dépendances Node.js
@@ -9,3 +8,5 @@ dist/
 
 # Empêche les fichiers de logs temporaires
 *.log
+
+node_modules/
