@@ -29,7 +29,7 @@ app.use('/api/generate-poem', rateLimit({
 // -------------------- OPENAI -------------------------
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
-// -------------------- ROUTE API ----------------------
+// À l’intérieur de votre route POST :
 app.post('/api/generate-poem', async (req, res) => {
   try {
     const safeName    = escape(String(req.body.name || '').trim().slice(0, 40));
@@ -39,11 +39,17 @@ app.post('/api/generate-poem', async (req, res) => {
       return res.status(400).json({ error: 'Champs manquants.' });
     }
 
-    const prompt = `Compose un poème français doux et chaleureux qui s'adresse directement à \
-${safeName} (« vous ») et fait l'éloge de sa ${safeQuality}. Adapte le poème en fonction \
-Fais un clin d'œil à la qualité de La Boucherie Capitol et à la cuisine du client. \
-Invite poliment à laisser un avis Google pour la boucherie (sans URL). \
-Trois strophes, quatre vers chacune, rimes plates ou riches, vocabulaire simple mais non familier.`;
+const prompt = `
+Crée un poème simple qui s'adresse à ${safeName},  
+écris un poème simple et chaleureux sur sa plus grande qualité qualité : "${safeQuality}".  
+Définis-la brièvement et compare-la à une image concrète.  
+Trois strophes de quatre vers chacune, rimes plates ou riches, vocabulaire simple.  
+Explique en quoi La Boucherie Capitol et sa cuisine permettent de transcender cette qualité.  
+Termine par un appel à l'action qui invite à laisser un avis Google à la Boucherie Capitol.
+L'appel à l'action concerne ${safeName}, donc répète son nom et tes vers s'adressent à lui. 
+Reste simple.
+`.trim();
+
 
     const completion = await openai.chat.completions.create({
       model: 'gpt-3.5-turbo',
@@ -61,6 +67,7 @@ Trois strophes, quatre vers chacune, rimes plates ou riches, vocabulaire simple 
     return res.status(502).json({ error: 'Erreur appel OpenAI' });
   }
 });
+
 
 // -------------------- STATIC & SERVEUR ---------------
 app.use(express.static('public'));    // sert index.html, app.js, etc.

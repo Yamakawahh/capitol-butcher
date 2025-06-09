@@ -17,33 +17,117 @@
         rel="stylesheet" crossorigin>
 
   <style>
-    :root{--sky:#87ceeb;--white:#ffffff;--dark:#1e1e1e;--overlay:rgba(0,0,0,.15);--gold:#ffd54f}
-    *{box-sizing:border-box;margin:0;padding:0;font-family:"Poppins",sans-serif}
-    /* ▼ flex-column pour empiler carte + footer ▼ */
-    body{
-      background:var(--sky);
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      min-height:100vh;
-      color:var(--dark);
+    :root {
+      --color-primary:   #8B0000;
+      --color-secondary: #F5F5DC;
+      --color-accent:    #FFA500;
+      --color-white:     #ffffff;
+      --color-dark:      #1e1e1e;
+      --overlay:         rgba(0,0,0,0.15);
     }
-    .card{background:var(--white);border-radius:18px;padding:2rem 2.5rem;max-width:520px;width:100%;box-shadow:0 8px 24px var(--overlay);text-align:center}
-    h1{font-size:1.7rem;margin-bottom:1.2rem}
-    form{display:flex;flex-direction:column;gap:1rem;margin-bottom:1.5rem}
-    input{padding:.75rem 1rem;border:2px solid var(--sky);border-radius:12px;font-size:.96rem}
-    button{padding:.85rem 1rem;background:var(--sky);border:none;border-radius:12px;font-weight:600;font-size:1rem;cursor:pointer;transition:background .25s}
-    button:hover{background:#76bada}
-    button[disabled]{opacity:.55;cursor:not-allowed}
-    pre{white-space:pre-wrap;text-align:left;background:#f7f9fa;padding:1rem;border-radius:12px;font-size:.95rem;line-height:1.45;margin-bottom:1rem}
-    .error{color:crimson;margin-top:.7rem;font-size:.9rem}
-    #reviewBtn{display:none;margin-top:1rem;padding:.8rem 1.2rem;background:var(--gold);color:var(--dark);border:none;border-radius:10px;font-weight:600;font-size:1rem;text-decoration:none}
-    #reviewBtn:hover{filter:brightness(1.1)}
-
-    footer{margin-top:1.5rem;font-size:.85rem;text-align:center;color:#333}
-    footer a{color:#333;text-decoration:none;padding:0 .4rem}
-    footer a:hover{text-decoration:underline}
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Poppins", sans-serif;
+    }
+    body {
+      background: var(--color-secondary);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      color: var(--color-dark);
+    }
+    .card {
+      background: var(--color-white);
+      border-radius: 18px;
+      padding: 2rem 2.5rem;
+      max-width: 520px;
+      width: 100%;
+      box-shadow: 0 8px 24px var(--overlay);
+      text-align: center;
+    }
+    h1 {
+      font-size: 1.7rem;
+      margin-bottom: 1.2rem;
+      color: var(--color-primary);
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    input {
+      padding: .75rem 1rem;
+      border: 2px solid var(--color-primary);
+      border-radius: 12px;
+      font-size: .96rem;
+    }
+    button {
+      padding: .85rem 1rem;
+      background: var(--color-accent);
+      border: none;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: filter .25s;
+      color: var(--color-white);
+    }
+    button:hover {
+      filter: brightness(1.1);
+    }
+    button[disabled] {
+      opacity: .55;
+      cursor: not-allowed;
+    }
+    pre {
+      white-space: pre-wrap;
+      text-align: left;
+      background: #f7f9fa;
+      padding: 1rem;
+      border-radius: 12px;
+      font-size: .95rem;
+      line-height: 1.45;
+      margin-bottom: 1rem;
+    }
+    .error {
+      color: crimson;
+      margin-top: .7rem;
+      font-size: .9rem;
+    }
+    #reviewBtn {
+      display: none;
+      margin-top: 1rem;
+      padding: .8rem 1.2rem;
+      background: var(--color-accent);
+      color: var(--color-dark);
+      border: none;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+    }
+    #reviewBtn:hover {
+      filter: brightness(1.1);
+    }
+    footer {
+      margin-top: 1.5rem;
+      font-size: .85rem;
+      text-align: center;
+      color: var(--color-dark);
+    }
+    footer a {
+      color: var(--color-primary);
+      text-decoration: none;
+      padding: 0 .4rem;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
@@ -66,15 +150,15 @@
     <div id="status" aria-live="polite"></div>
     <pre id="poemOutput"></pre>
 
-    <a id="reviewBtn" href="https://g.page/r/CAPITOL-BUTCHER/review"
+    <a id="reviewBtn" href="https://www.google.com/maps/place/Capitol+Butcher+Montreal+Ltd/@45.5349905,-73.6173572,17z/data=!4m8!3m7!1s0x4cc919133ebb7163:0xfaad955afd21ab02!8m2!3d45.5349868!4d-73.6147823!9m1!1b1!16s%2Fg%2F1tgb_cwz?entry=ttu&g_ep=EgoyMDI1MDYwNC4wIKXMDSoASAFQAw%3D%3D"
        rel="noopener noreferrer" target="_blank">
-      Laisser un avis ⭐
+      Laisser ton avis ici ☺️ 
     </a>
   </div>
 
   <footer>
     <a href="/mentions-legales.html">Mentions légales</a> ·
-    <a href="/politique-confidentialite.html">Politique de confidentialité</a>
+    <a href="/politique_confidentialite.html">Politique de confidentialité</a>
   </footer>
 
   <script src="app.js" defer></script>
